@@ -1,0 +1,74 @@
+apply plugin: 'com.android.library'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'com.alibaba.arouter'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion project.ANDROID_COMPILE_SDK_VERSION as int
+
+    defaultConfig {
+        minSdkVersion project.ANDROID_MIN_SDK_VERSION
+        targetSdkVersion project.ANDROID_TARGET_SDK_VERSION
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        targetCompatibility 1.7
+        sourceCompatibility 1.7
+    }
+}
+
+kapt {
+    arguments {
+        arg("moduleName", project.getName())
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    api "com.android.support:appcompat-v7:${SUPPORT_LIBRARY_VERSION}"
+    api "com.android.support:design:${SUPPORT_LIBRARY_VERSION}"
+    api "com.android.support:support-vector-drawable:${SUPPORT_LIBRARY_VERSION}"
+    api 'com.android.support.constraint:constraint-layout:1.0.2'
+    api 'com.github.bumptech.glide:glide:4.6.1'
+    kapt 'com.github.bumptech.glide:compiler:4.6.1'
+    implementation 'org.jetbrains.anko:anko-common:0.10.3'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.10'
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    //CallAdapterFactory的Rx依赖包
+    implementation 'com.squareup.retrofit2:converter-scalars:2.4.0'
+    api 'com.google.code.gson:gson:2.8.2'
+    api 'com.github.zhaokaiqiang.klog:library:1.6.0'
+    api 'com.android.support:multidex:1.0.3'
+    api 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-2'
+    api 'com.zhy:percent-support-extends:1.1.1'
+    api 'com.afollestad.material-dialogs:core:0.9.6.0'
+    api 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.34'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    api 'com.alibaba:arouter-api:1.2.4'
+    kapt 'com.alibaba:arouter-compiler:1.1.4'
+}
+
+
+repositories {
+    mavenCentral()
+}
