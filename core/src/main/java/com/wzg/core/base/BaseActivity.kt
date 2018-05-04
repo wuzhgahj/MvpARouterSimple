@@ -1,6 +1,7 @@
 package com.wzg.core.base
 
 import android.os.Bundle
+import android.support.annotation.*
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
@@ -45,7 +46,7 @@ abstract class BaseActivity<P : BasePresenter<*>> : AppCompatActivity(), BaseVie
     //用于创建Presenter和判断是否使用MVP模式(由子类实现)
     protected abstract fun createPresenter(): P
 
-    abstract fun getLayoutId(savedInstanceState: Bundle?): Int
+    @LayoutRes abstract fun getLayoutId(savedInstanceState: Bundle?):  Int
 
     abstract fun initView()
 
@@ -72,11 +73,11 @@ abstract class BaseActivity<P : BasePresenter<*>> : AppCompatActivity(), BaseVie
 
     }
 
-    protected fun getResString(id: Int): String {
+    protected fun getResString(@StringRes id: Int): String {
         return resources.getString(id)
     }
 
-    protected fun getResColor(id: Int): Int {
+    protected fun getResColor(@ColorRes id: Int): Int {
         return ContextCompat.getColor(this, id)
     }
 
